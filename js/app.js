@@ -1,16 +1,21 @@
-function consultar()
-{
+// function consultar()
+// {
+const url = = 'https://servicos.detran.ro.gov.br/auth/api/token';
+//const url = 'https://reqres.in/api/users';
 
-    fetch("https://servicos.detran.ro.gov.br/auth/api/token",
+let usuario = {
+    login:'otimisa',
+    senha:'12345'
+};
+
+    fetch(url",
     {
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods':'DELETE, POST, GET, OPTIONS'
+          'Content-Type': 'application/json'
         },
         method: "POST",
-        body: JSON.stringify({login:'otimisa', senha:'12345'})
+        body: JSON.stringify({usuario})
     })
     //.then(function(res){ console.log(res) })
     .then(resp =>res.json())
@@ -18,10 +23,10 @@ function consultar()
             console.log('Iniciou');
             console.log(respObj)
         })
-    .catch(function(res){ console.log(res) })
+    .catch(error => console.log('Deu Erro '+error));
 
-    console.log('Finalizou');
-}
+    //console.log('Finalizou');
+//}
 
 
 // var deleteLink = document.querySelector('.delete');
@@ -29,10 +34,10 @@ function consultar()
 // deleteLink.addEventListener('click', function(event) {
 //     event.preventDefault();
 
-var btn = document.querySelector('#btnEnviar');
-btn.addEventListener('click',function (event) {
-   consultar();
-});
+// var btn = document.querySelector('#btnEnviar');
+// btn.addEventListener('click',function (event) {
+//    consultar();
+// });
 
 // document.querySelector("#btnEnviar").click(function(){
 //
