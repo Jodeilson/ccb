@@ -1,0 +1,53 @@
+{
+    "short_name": "CCB",
+    "name": "CCB PVH",
+    "start_url": "index.html",
+    "background_color": "#003366",
+    "theme_color": "#003366",
+    "display": "standalone",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "imagens/icons/72x72.png",
+            "type": "image/png",
+            "sizes": "72x72"
+        },
+        {
+            "src": "imagens/icons/96x96.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "imagens/icons/128x128.png",
+            "type": "image/png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "imagens/icons/144x144.png",
+            "type": "image/png",
+            "sizes": "144x144"
+        },
+        {
+            "src": "imagens/icons/152x152.png",
+            "type": "image/png",
+            "sizes": "152x152"
+        },
+        {
+            "src": "imagens/icons/192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "imagens/icons/384x384.png",
+            "type": "image/png",
+            "sizes": "384x384"
+        },
+        {
+            "src": "imagens/icons/512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+      ]
+
+
+}
