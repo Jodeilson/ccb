@@ -1,4 +1,4 @@
-importScripts('js/metodos.js');
+importScripts('/js/metodos.js');
 
 
 const STATIC_CACHE    = 'static-v1';
