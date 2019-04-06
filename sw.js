@@ -27,18 +27,45 @@ const APP_SHELL_INMUTABLE = [
 
 ];
 
-self.addEventListener('install', e => {
-    const cacheStatic = caches.open( STATIC_CACHE ).then(cache =>
+// self.addEventListener('install', e => {
+//     const cacheStatic = caches.open( STATIC_CACHE ).then(cache =>
+//         cache.addAll( APP_SHELL ));
+//
+//     const cacheInmutable = caches.open( INMUTABLE_CACHE ).then(cache =>
+//         cache.addAll( APP_SHELL_INMUTABLE ));
+//
+//
+//
+//     let result = (async function() {
+//
+//        await console.log('awit');
+//     });
+//
+//
+//
+//
+//     e.waitUntil(  Promise.all([ cacheStatic, cacheInmutable ])  );
+//
+// });
+
+
+self.addEventListener('install', event => { event.waitUntil(installHandler(event)); });
+
+   async function installHandler(event) {
+
+    const cacheStatic = await caches.open( STATIC_CACHE ).then(cache =>
         cache.addAll( APP_SHELL ));
 
-    const cacheInmutable = caches.open( INMUTABLE_CACHE ).then(cache =>
+    const cacheInmutable = await caches.open( INMUTABLE_CACHE ).then(cache =>
         cache.addAll( APP_SHELL_INMUTABLE ));
 
-    let result =  Promise.all([cacheStatic,cacheInmutable]);
 
-    e.waitUntil(result);
+    //let cache = await caches.open(cacheName);
+    //await cache.addAll(cacheUrls);
+}
 
-});
+
+
 
 self.addEventListener('activate', e => {
 
