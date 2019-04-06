@@ -1,14 +1,7 @@
 
 
-// if( 'undefined' === typeof window){
-//
-//     importScripts('js/metodos.js');
-//     console.log('importado');
-//
-// }
 
-
-
+importScripts('js/metodos.js');
 
 
 const STATIC_CACHE    = 'static-v1';
@@ -34,48 +27,6 @@ const APP_SHELL_INMUTABLE = [
 
 ];
 
-
-
-
-//Guarda Cache Dinamico
-function atualizaCacheDinamico( dynamicCache, req, res ) {
-
-
-    if ( res.ok ) {
-
-        return caches.open( dynamicCache ).then( cache => {
-
-            cache.put( req, res.clone() );
-
-            return res.clone();
-
-        });
-
-    } else {
-        return res;
-    }
-
-}
-
-// Cache Statico
-function atualizaCacheStatico( staticCache, req, APP_SHELL_INMUTABLE ) {
-
-
-    if ( APP_SHELL_INMUTABLE.includes(req.url) ) {
-
-
-    } else {
-        return fetch( req )
-            .then( res => {
-                return atualizaCacheDinamico( staticCache, req, res );
-            });
-    }
-
-
-}
-
-
-
 self.addEventListener('install', e => {
     const cacheStatic = caches.open( STATIC_CACHE ).then(cache =>
         cache.addAll( APP_SHELL ));
@@ -96,9 +47,9 @@ self.addEventListener('activate', e => {
                 return caches.delete(key);
             }
 
-            // if (  key !== DYNAMIC_CACHE && key.includes('dynamic') ) {
-            //     return caches.delete(key);
-            // }
+            if (  key !== DYNAMIC_CACHE && key.includes('dynamic') ) {
+                return caches.delete(key);
+            }
 
         });
 
