@@ -49,16 +49,6 @@ const APP_SHELL_INMUTABLE = [
 // });
 
 
-self.addEventListener('install', function(e) {
-    console.log('[ServiceWorker] Install');
-    e.waitUntil(
-        caches.open(STATIC_CACHE).then(function(cache) {
-            console.log('[ServiceWorker] Caching app shell');
-            return cache.addAll(APP_SHELL);
-        })
-    );
-});
-
 
 self.addEventListener('activate', e => {
 
