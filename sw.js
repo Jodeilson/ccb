@@ -1,5 +1,12 @@
 //Imports
-importScripts('js/metodos.js');
+
+if( 'undefined' === typeof window){
+
+    importScripts('js/metodos.js');
+    console.log('importado');
+
+}
+
 
 
 

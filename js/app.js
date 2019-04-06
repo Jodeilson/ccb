@@ -15,7 +15,7 @@ if (navigator.serviceWorker)
     window.addEventListener('load', function() {
 
         navigator.serviceWorker.register( swLocation ).then( function(reg){
-
+            console.log('sw registrado');
             swReg = reg;
             //swReg.pushManager.getSubscription().then( verificaSuscripcion );
 
