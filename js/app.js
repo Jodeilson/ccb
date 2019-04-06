@@ -1,7 +1,7 @@
 
 var url = window.location.href;
 console.log(url)
-var swLocation = '/sw.js';
+var swLocation = 'ccb/sw.js';
 
 var swReg;
 
