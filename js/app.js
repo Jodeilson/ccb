@@ -1,6 +1,5 @@
 
 var url = window.location.href;
-console.log(url)
 var swLocation = 'ccb/sw.js';
 
 var swReg;
@@ -13,7 +12,13 @@ if (navigator.serviceWorker)
         swLocation = '/sw.js';
     }
 
-    navigator.serviceWorker.register(swLocation);
+    navigator.serviceWorker.register(swLocation).then(function (req) {
+
+        console.log('SW registrado');
+
+    }).catch(function (erro) {
+        console.log('erro '+erro);
+    });
 
 }
 
