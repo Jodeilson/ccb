@@ -17,7 +17,7 @@ if (navigator.serviceWorker)
         console.log('SW registrado');
 
     }).catch(function (erro) {
-        console.log('erro '+erro);
+
     });
 
 }
