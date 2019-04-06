@@ -12,11 +12,14 @@ if (navigator.serviceWorker)
         swLocation = '/sw.js';
     }
 
-    navigator.serviceWorker.register(swLocation).then(function (req) {
+    window.addEventListener('load', function() {
 
-        console.log('SW registrado');
+        navigator.serviceWorker.register( swLocation ).then( function(reg){
 
-    }).catch(function (erro) {
+            swReg = reg;
+            //swReg.pushManager.getSubscription().then( verificaSuscripcion );
+
+        });
 
     });
 
