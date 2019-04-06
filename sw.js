@@ -34,9 +34,12 @@ self.addEventListener('install', e => {
     const cacheInmutable = caches.open( INMUTABLE_CACHE ).then(cache =>
         cache.addAll( APP_SHELL_INMUTABLE ));
 
-    e.waitUntil( Promise.all([ cacheStatic, cacheInmutable ])  );
+    let result =  Promise.all([cacheStatic,cacheInmutable]);
+
+    e.waitUntil(result);
 
 });
+
 self.addEventListener('activate', e => {
 
     const resposta = caches.keys().then( keys => {
