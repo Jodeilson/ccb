@@ -49,21 +49,14 @@ const APP_SHELL_INMUTABLE = [
 // });
 
 
-self.addEventListener('install', event => { event.waitUntil(installHandler(event)); });
-
-   async function installHandler(event) {
-
-    const cacheStatic = await caches.open( STATIC_CACHE ).then(cache =>
-        cache.addAll( APP_SHELL ));
-
-    const cacheInmutable = await caches.open( INMUTABLE_CACHE ).then(cache =>
-        cache.addAll( APP_SHELL_INMUTABLE ));
-
-
-    //let cache = await caches.open(cacheName);
-    //await cache.addAll(cacheUrls);
-}
-
+self.addEventListener('install', function(e) {
+    console.log('instalando caches');
+    e.waitUntil(
+        caches.open('STATIC_CACHE').then(function(cache) {
+            return cache.addAll(APP_SHELL);
+        })
+    );
+});
 
 
 
