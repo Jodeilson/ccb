@@ -2,8 +2,8 @@
     "short_name": "CCB",
     "name": "CCB PVH",
     "start_url": "index.html",
-    "background_color": "#003366",
-    "theme_color": "#003366",
+    "background_color": "#A7CDCC",
+    "theme_color": "#A7CDCC",
     "display": "standalone",
     "orientation": "portrait",
     "icons": [
