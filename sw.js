@@ -1,11 +1,11 @@
 //Imports
 
-if( 'undefined' === typeof window){
-
-    importScripts('js/metodos.js');
-    console.log('importado');
-
-}
+// if( 'undefined' === typeof window){
+//
+//     importScripts('js/metodos.js');
+//     console.log('importado');
+//
+// }
 
 
 
@@ -33,6 +33,48 @@ const APP_SHELL_INMUTABLE = [
     'js/toastr.min.js',
 
 ];
+
+
+
+
+//Guarda Cache Dinamico
+function atualizaCacheDinamico( dynamicCache, req, res ) {
+
+
+    if ( res.ok ) {
+
+        return caches.open( dynamicCache ).then( cache => {
+
+            cache.put( req, res.clone() );
+
+            return res.clone();
+
+        });
+
+    } else {
+        return res;
+    }
+
+}
+
+// Cache Statico
+function atualizaCacheStatico( staticCache, req, APP_SHELL_INMUTABLE ) {
+
+
+    if ( APP_SHELL_INMUTABLE.includes(req.url) ) {
+
+
+    } else {
+        return fetch( req )
+            .then( res => {
+                return atualizaCacheDinamico( staticCache, req, res );
+            });
+    }
+
+
+}
+
+
 
 self.addEventListener('install', e => {
     const cacheStatic = caches.open( STATIC_CACHE ).then(cache =>
