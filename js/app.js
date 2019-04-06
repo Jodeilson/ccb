@@ -1,6 +1,6 @@
 
 var url = window.location.href;
-var swLocation = '/app/sw.js';
+var swLocation = '/ccb/sw.js';
 
 var swReg;
 
