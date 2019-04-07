@@ -170,7 +170,6 @@ $(document).ready(function () {
             interaction: true,
             interactionTimeout: 2000,
             actionText: 'Ok'
-
         });
 
         const notificationOpts = {
@@ -182,7 +181,13 @@ $(document).ready(function () {
         const n = new Notification('Notificação CCB', notificationOpts);
 
         n.onclick = () => {
-            console.log('Click');
+            //console.log('Click');
+            $.mdtoast('Notificação Lida',{
+                type: 'info',
+                interaction: true,
+                interactionTimeout: 2000,
+                actionText: 'Ok'
+            });
         };
 
     }
