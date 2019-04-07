@@ -165,6 +165,14 @@ $(document).ready(function () {
     //Notificacao
     function enviarNotificacao() {
 
+        $.mdtoast('Iniciando o envio da Notificação',{
+            type: 'success',
+            interaction: true,
+            interactionTimeout: 2000,
+            actionText: 'Ok'
+
+        });
+
         const notificationOpts = {
             body: 'Notificação enviada com sucesso!',
             icon: 'imagens/icons/72x72.png'
@@ -186,23 +194,29 @@ $(document).ready(function () {
 
         if (window.Notification)
         {
-
             if ( Notification.permission === 'granted' ) {
-
                 enviarNotificacao();
 
             } else if ( Notification.permission !== 'denied' || Notification.permission === 'default' )  {
 
                 Notification.requestPermission( function( permission ) {
-
-                    console.log( permission );
-
+                    //console.log( permission );
                     if ( permission === 'granted' ) {
                         enviarNotificacao();
                     }
 
                 });
 
+            }
+            else
+            {
+                $.mdtoast('Notificação Negada',{
+                    type: 'error',
+                    interaction: true,
+                    interactionTimeout: 2000,
+                    actionText: 'Ok'
+
+                });
             }
 
         }
