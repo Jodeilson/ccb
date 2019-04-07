@@ -23,13 +23,107 @@ if (navigator.serviceWorker)
 
     });
 
+
+    navigator.serviceWorker.ready.then(function(registration) {
+        console.log('Service work pronto');
+    });
+
+
 }
+
 
 window.addEventListener('offline', e=>{
 
-   alert('OffLine');
+    $.mdtoast('Verifique sua Conexão com a internet!',{
+        type: 'error',
+        interaction: true,
+        interactionTimeout: 2000,
+        actionText: 'Ok'
+
+    });
 
 } );
+
+
+
+$(document).ready(function () {
+
+
+    //Camera
+    $('#camera').on('click',()=>{
+
+        alert('ok');
+
+
+    });
+
+    //Gps
+    $('#gps').on('click',()=>{
+
+        $.mdtoast('Iniciando captura da localização',{
+            type: 'info',
+            interaction: true,
+            interactionTimeout: 2000,
+            actionText: 'Ok'
+
+        });
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(position => {
+
+                let latitude = position.coords.latitude;
+                let longitude = position.coords.longitude;
+
+                var msg ='Latitude: '+latitude +' Longitude '+longitude;
+
+                $.mdtoast(msg,{
+                    type: 'success',
+                    interaction: true,
+                    interactionTimeout: 20000,
+                    actionText: 'Ok'
+
+                });
+
+
+            });
+        }
+        else {
+
+            $.mdtoast('Navegador não suporta a ação',{
+                type: 'error',
+                interaction: true,
+                interactionTimeout: 2000,
+                actionText: 'Ok'
+
+            });
+
+        }
+
+
+
+    });
+
+
+    //Notificacao
+    $('#notificacao').on('click',()=>{
+
+        alert('ok');
+
+
+    });
+
+
+    //microfone
+    $('#microfone').on('click',()=>{
+
+        alert('ok');
+
+
+    });
+
+
+
+});
 
 
 

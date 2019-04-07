@@ -19,11 +19,11 @@ const APP_SHELL = [
 const APP_SHELL_INMUTABLE = [
     'css/bootstrap.min.css',
     'css/sb-admin-2.css',
-    'css/toastr.min.css',
+    'css/mdtoast.min.css',
     'js/bootstrap.min.js',
     'js/jquery-3.3.1.min.js',
     'js/sb-admin-2.js',
-    'js/toastr.min.js',
+    'js/mdtoast.min.js',
 
 ];
 
