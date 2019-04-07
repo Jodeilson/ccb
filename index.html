@@ -162,7 +162,7 @@
 
                     <!-- Earnings (Monthly) Card Example -->
                     <div class="col-xl-3 col-md-6 mb-4">
-                        <a id="camera" href="#">
+                        <a id="camera" href="#" data-toggle="modal" data-target="#cameraModal">
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
@@ -200,7 +200,7 @@
 
                     <!-- Earnings (Monthly) Card Example -->
                     <div class="col-xl-3 col-md-6 mb-4">
-                        <a id="gps" href="#">
+                        <a id="gps" href="#"data-toggle="modal" data-target="#gpsModal">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -289,6 +289,54 @@
       </div>
     </div>
   </div>
+
+
+      <!-- Camera Modal-->
+      <div class="modal fade" id="cameraModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel1">Câmera</h5>
+                      <!--<button class="close" type="button" data-dismiss="modal" aria-label="Close">-->
+                          <!--<span aria-hidden="true">×</span>-->
+                      <!--</button>-->
+                  </div>
+                  <div class="modal-body">
+                      <video class="text-center" id="player" autoplay></video>
+                  </div>
+                  <div class="modal-footer">
+                      <button id="fecharCamera" class="btn btn-secondary" type="button" data-dismiss="modal">Ok</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+      <!-- GPS Modal-->
+      <div class="modal fade" id="gpsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel2">GPS</h5>
+                      <!--<button class="close" type="button" data-dismiss="modal" aria-label="Close">-->
+                      <!--<span aria-hidden="true">×</span>-->
+                      <!--</button>-->
+                  </div>
+                  <div class="modal-body">
+
+
+
+
+
+                  </div>
+                  <div class="modal-footer">
+                      <button id="fecharGps" class="btn btn-secondary" type="button" data-dismiss="modal">Ok</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
 
   <!-- Bootstrap core JavaScript-->
   <script src="js/jquery-3.3.1.min.js"></script>

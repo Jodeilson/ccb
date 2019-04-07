@@ -32,29 +32,78 @@ if (navigator.serviceWorker)
 }
 
 
-window.addEventListener('offline', e=>{
+// window.addEventListener('offline', e=>{
+//
+//     $.mdtoast('Verifique sua Conexão com a internet!',{
+//         type: 'error',
+//         interaction: true,
+//         interactionTimeout: 2000,
+//         actionText: 'Ok'
+//
+//     });
+//
+// } );
 
-    $.mdtoast('Verifique sua Conexão com a internet!',{
-        type: 'error',
-        interaction: true,
-        interactionTimeout: 2000,
-        actionText: 'Ok'
+// Detecta Conexão
+function isOnline() {
+    if ( navigator.onLine ) {
+        $.mdtoast('Conexão restabelecida', {
+            type: 'success',
+            interaction: true,
+            interactionTimeout: 2000,
+            actionText: 'OK!'
+        });
 
-    });
 
-} );
+    } else{
+        // Sem Conexão
+        $.mdtoast('Verifique sua Conexão com a internet!', {
+            type: 'error',
+            interaction: true,
+            actionText: 'OK',
+            interactionTimeout: 20000
+        });
+    }
+
+}
+
+window.addEventListener('online', isOnline );
+window.addEventListener('offline', isOnline );
 
 
 
 $(document).ready(function () {
 
-
     //Camera
     $('#camera').on('click',()=>{
 
-        alert('ok');
+        navigator.mediaDevices.getUserMedia({
+            audio: false,
+            video: { width: 400, height: 300 }
+        }).then( stream => {
 
+            $('#player')[0].srcObject = stream;
+            this.stream = stream;
 
+        });
+
+        $.mdtoast('Câmera Iniciada', {
+            type: 'success',
+            interaction: true,
+            interactionTimeout: 2000,
+            actionText: 'OK!'
+        });
+
+    });
+
+    //Fechar Camera
+    $('#fecharCamera').on('click',()=>{
+
+        $('#player')[0].pause();
+
+        if ( this.stream ) {
+            this.stream.getTracks()[0].stop();
+        }
     });
 
     //Gps
