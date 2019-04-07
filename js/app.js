@@ -77,22 +77,38 @@ $(document).ready(function () {
     //Camera
     $('#camera').on('click',()=>{
 
-        navigator.mediaDevices.getUserMedia({
-            audio: false,
-            video: { width: 400, height: 300 }
-        }).then( stream => {
+        if(navigator.mediaDevices)
+        {
+            navigator.mediaDevices.getUserMedia({
+                audio: false,
+                video: { width: 400, height: 300 }
+            }).then( stream => {
 
-            $('#player')[0].srcObject = stream;
-            this.stream = stream;
+                $('#player')[0].srcObject = stream;
+                this.stream = stream;
 
-        });
+            });
 
-        $.mdtoast('Câmera Iniciada', {
-            type: 'success',
-            interaction: true,
-            interactionTimeout: 2000,
-            actionText: 'OK!'
-        });
+            $.mdtoast('Câmera Iniciada', {
+                type: 'success',
+                interaction: true,
+                interactionTimeout: 2000,
+                actionText: 'OK!'
+            });
+        }
+        else {
+
+            $.mdtoast('Navegador não suporta a ação',{
+                type: 'error',
+                interaction: true,
+                interactionTimeout: 2000,
+                actionText: 'Ok'
+
+            });
+
+        }
+
+
 
     });
 
@@ -110,7 +126,7 @@ $(document).ready(function () {
     $('#gps').on('click',()=>{
 
         $.mdtoast('Iniciando captura da localização',{
-            type: 'info',
+            type: 'success',
             interaction: true,
             interactionTimeout: 2000,
             actionText: 'Ok'
@@ -119,21 +135,14 @@ $(document).ready(function () {
         if (navigator.geolocation)
         {
             navigator.geolocation.getCurrentPosition(position => {
-
                 let latitude = position.coords.latitude;
                 let longitude = position.coords.longitude;
-
-                var msg ='Latitude: '+latitude +' Longitude '+longitude;
-
-                $.mdtoast(msg,{
-                    type: 'success',
-                    interaction: true,
-                    interactionTimeout: 20000,
-                    actionText: 'Ok'
-
-                });
-
-
+                $('#latitude').text(latitude);
+                $('#longitude').text(longitude);
+                $('#modal-mapa').remove();
+                let keyGoogle = "AIzaSyBkDYSVRVtQ6P2mf2Xrq0VBjps8GEcWsLU";
+                let content = "<div id='modal-mapa' class='modal-mapa'>  <iframe width='100%' height='100%' frameborder='0' src='https://www.google.com/maps/embed/v1/view?key="+keyGoogle+"&center="+latitude+","+longitude+"&zoom=17' allowfullscreen></iframe> </div>";
+                $('#mapa').prepend(content);
             });
         }
         else {
@@ -154,9 +163,61 @@ $(document).ready(function () {
 
 
     //Notificacao
+    function enviarNotificacao() {
+
+        const notificationOpts = {
+            body: 'Notificação enviada com sucesso!',
+            icon: 'imagens/icons/72x72.png'
+        };
+
+
+        const n = new Notification('Notificação CCB', notificationOpts);
+
+        n.onclick = () => {
+            console.log('Click');
+        };
+
+    }
+
+
+
+
     $('#notificacao').on('click',()=>{
 
-        alert('ok');
+        if (window.Notification)
+        {
+
+            if ( Notification.permission === 'granted' ) {
+
+                enviarNotificacao();
+
+            } else if ( Notification.permission !== 'denied' || Notification.permission === 'default' )  {
+
+                Notification.requestPermission( function( permission ) {
+
+                    console.log( permission );
+
+                    if ( permission === 'granted' ) {
+                        enviarNotificacao();
+                    }
+
+                });
+
+            }
+
+        }
+        else {
+
+            $.mdtoast('Navegador não suporta a ação',{
+                type: 'error',
+                interaction: true,
+                interactionTimeout: 2000,
+                actionText: 'Ok'
+
+            });
+
+        }
+
 
 
     });
@@ -165,9 +226,47 @@ $(document).ready(function () {
     //microfone
     $('#microfone').on('click',()=>{
 
-        alert('ok');
+        if(navigator.mediaDevices)
+        {
+            navigator.mediaDevices.getUserMedia({
+                audio: true
+            }).then( stream => {
+
+                $('#audio')[0].srcObject = stream;
+                this.stream = stream;
+
+            });
+
+            $.mdtoast('Microfone Iniciada', {
+                type: 'success',
+                interaction: true,
+                interactionTimeout: 2000,
+                actionText: 'OK!'
+            });
+        }
+        else {
+
+            $.mdtoast('Navegador não suporta a ação',{
+                type: 'error',
+                interaction: true,
+                interactionTimeout: 2000,
+                actionText: 'Ok'
+
+            });
+
+        }
 
 
+    });
+
+    //Fechar Audio
+    $('#fecharMicrofone').on('click',()=>{
+
+        $('#audio')[0].pause();
+
+        if ( this.stream ) {
+            this.stream.getTracks()[0].stop();
+        }
     });
 
 

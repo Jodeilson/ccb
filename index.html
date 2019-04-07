@@ -218,7 +218,7 @@
 
                     <!-- Earnings (Monthly) Card Example -->
                     <div class="col-xl-3 col-md-6 mb-4">
-                        <a id="microfone" href="#">
+                        <a id="microfone" href="#" data-toggle="modal" data-target="#microfoneModal">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -323,10 +323,22 @@
                       <!--</button>-->
                   </div>
                   <div class="modal-body">
+                      <div class="row">
+                          <div class="col">
+                              <label for="">Latitude</label>
+                              <label id="latitude" class="form-control" for=""></label>
+                          </div>
+                          <div class="col">
+                              <label for="">Longitude</label>
+                              <label id="longitude" class="form-control" for=""></label>
+                          </div>
+                      </div>
 
+                      <div class="col-12">
+                      <div id="mapa" class="row">
+                      </div>
 
-
-
+                      </div>
 
                   </div>
                   <div class="modal-footer">
@@ -335,6 +347,31 @@
               </div>
           </div>
       </div>
+
+
+      <!-- Microfone Modal-->
+      <div class="modal fade" id="microfoneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel3">Microfone</h5>
+                      <!--<button class="close" type="button" data-dismiss="modal" aria-label="Close">-->
+                      <!--<span aria-hidden="true">×</span>-->
+                      <!--</button>-->
+                  </div>
+                  <div class="modal-body text-center">
+                      <audio class="text-center" id="audio" autoplay></audio>
+                      <i class="text-success fas fa-microphone fa-7x fa-spin"></i>
+
+                  </div>
+                  <div class="modal-footer">
+                      <button id="fecharMicrofone" class="btn btn-secondary" type="button" data-dismiss="modal">Ok</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
 
 
 
